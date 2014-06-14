@@ -14,11 +14,20 @@
     </div>
 
     <div>
-        <h3>Search task by title</h3>
+        <h3>Search task by title:</h3>
         <input type="text" id="taskTitle" size="10" />
         <input type="button" value="Search" onclick="find();" />
 
         <p id="singleTask"></p>
+    </div>
+
+    <div>
+        <h3>Add new task:</h3>
+        <input type="text" id="addTaskTitle" size="10" />
+        <input type="text" id="addTaskBody" size="10" />
+        <input type="button" value="Add" onclick="addTask();" />
+
+        <p id="singleAddTask"></p>
     </div>
 
 </body>

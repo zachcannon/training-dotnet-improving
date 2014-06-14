@@ -34,18 +34,19 @@ namespace AgileTaskKeeper.Controllers
         }
 
         // POST api/Task
-        public void Post([FromBody]string value)
+        public void Post(String id)
         {
+           
         }
 
-        // PUT api/Task/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/Task/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/Task/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/Task/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

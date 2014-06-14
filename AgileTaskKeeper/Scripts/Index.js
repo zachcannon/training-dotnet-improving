@@ -13,10 +13,17 @@ function formatItem(task) {
 
 function find() {
     var taskTitle = $('#taskTitle').val();
-    var uri = "api/task/"+ taskTitle;
+    var uri = "api/Task/"+ taskTitle;
     $.getJSON(uri)
         .done(function (data) {
             $('#singleTask').empty();
             $('#singleTask').append(formatItem(data));
         });
+};
+
+function addTask() {
+    var taskTitle = $('#addTaskTitle').val();
+    var taskBody = $('#addTaskBody').val();
+    var uri = "api/Task/" + taskTitle + taskBody;
+    $.post(uri);
 };
