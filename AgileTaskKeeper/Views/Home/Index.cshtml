@@ -2,6 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
-    Home Page
-</div>
+<head>
+    <title>Home Page</title>   
+    @Scripts.Render("~/Scripts/Index.js")
+</head>
+
+<body>
+    <div>
+        <h3>All Tasks:</h3>
+        <ul id="allTasks"></ul>
+    </div>
+
+    <div>
+        <h3>Search task by title</h3>
+        <input type="text" id="taskTitle" size="10" />
+        <input type="button" value="Search" onclick="find();" />
+
+        <p id="singleTask"></p>
+    </div>
+
+</body>
