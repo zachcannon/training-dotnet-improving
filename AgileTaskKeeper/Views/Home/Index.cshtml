@@ -22,10 +22,18 @@
     </div>
 
     <div>
-        <h3>Add new task:</h3>
-        <input type="text" id="addTaskTitle" size="10" />
-        <input type="text" id="addTaskBody" size="10" />
-        <input type="button" value="Add" onclick="addTask();" />
+        <form id="newTaskForm" method="post">
+            <h3>Create a new Task</h3>
+            <p>
+                <label for="taskTitle">Title:</label>
+                <input type="text" name="Title" />
+            </p>
+            <p>
+                <label for="taskBody">Body:</label>
+                <input type="text" name="Body" />
+            </p>
+            <input type="button" id="saveTask" value="Save" />
+        </form>
 
         <p id="singleAddTask"></p>
     </div>

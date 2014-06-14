@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgileTaskKeeper.Models
 {
-    public class Task
+    public class AgileTask
     {
+        [Key]
         public String Title { get; set; }
         public String Body { get; set; }
 
-        public Task(String title, String body)
+        public AgileTask() { }
+
+        public AgileTask(String title, String body)
         {
             this.Title = title;
             this.Body = body;

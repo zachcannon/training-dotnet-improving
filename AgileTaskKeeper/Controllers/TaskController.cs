@@ -5,48 +5,73 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AgileTaskKeeper.Models;
+using System.Data.Entity;
 
 namespace AgileTaskKeeper.Controllers
 {
-    public class TaskController : ApiController
+    public class AgileTaskController : ApiController
     {
-        Task[] tasks = new Task[]
-        {
-            new Task("Task1", "Body1"),
-            new Task("Task2", "Body2")
-        };
 
         // GET api/Task
-        public IEnumerable<Task> Get()
+        public IEnumerable<AgileTask> Get()
         {
-            return tasks;
+            TaskContext db = new TaskContext();
+            return db.GetAllTasks();
         }
 
         // GET api/Task/5
-        public Task Get(String id)
+        public AgileTask Get(String id)
         {
-            foreach (Task task in tasks)
+            TaskContext db = new TaskContext();
+
+            foreach (AgileTask task in db.GetAllTasks())
             {
                 if (task.Title.Equals(id))
                     return task;
             }
-            return new Task("NoTitle", "NoBody");
+            return new AgileTask("NoTitle", "NoBody");
         }
 
         // POST api/Task
-        public void Post(String id)
+        public void Post(AgileTask task)
         {
-           
+            TaskContext data = new TaskContext();
+            data.AddTaskToDb(task);
+        }
+    }
+
+    public class TaskContext : DbContext
+    {
+        public DbSet<AgileTask> AgileTasks { get; set; }
+
+        public void AddTaskToDb(AgileTask task)
+        {
+            var taskToAdd = task;
+
+            using (var db = new TaskContext())
+            {
+                db.AgileTasks.Add(taskToAdd);
+                db.SaveChanges();
+            }
         }
 
-        //// PUT api/Task/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        public IEnumerable<AgileTask> GetAllTasks()
+        {
+            using (var db = new TaskContext())
+            {
+                return db.AgileTasks.ToList();
+            }
+        }
 
-        //// DELETE api/Task/5
-        //public void Delete(int id)
-        //{
-        //}
+        public AgileTask GetTaskFromDb(String taskName)
+        {
+            using (var db = new TaskContext())
+            {
+                AgileTask task = db.AgileTasks.Find(taskName);
+                if (task != null)
+                    return task;
+            }
+            return new AgileTask("NoTaskFound", "NoTaskFound");
+        }
     }
 }
