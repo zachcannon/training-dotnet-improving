@@ -19,19 +19,6 @@ namespace AgileTaskKeeper.Controllers
             return db.GetAllTasks();
         }
 
-        // GET api/Task/5
-        public AgileTask Get(String id)
-        {
-            TaskContext db = new TaskContext();
-
-            foreach (AgileTask task in db.GetAllTasks())
-            {
-                if (task.Title.Equals(id))
-                    return task;
-            }
-            return new AgileTask("NoTitle", "NoBody");
-        }
-
         // POST api/Task
         public void Post(AgileTask task)
         {

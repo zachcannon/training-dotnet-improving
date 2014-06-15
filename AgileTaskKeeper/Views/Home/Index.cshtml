@@ -4,38 +4,34 @@
 
 <head>
     <title>Home Page</title>   
+    @Styles.Render("~/Content/Index.css")
     @Scripts.Render("~/Scripts/Index.js")
 </head>
 
-<body>
-    <div>
-        <h3>All Tasks:</h3>
-        <ul id="allTasks"></ul>
-    </div>
+<body class="container-fluid">
+    <div class="row">
+        <div class="col-sm-7">
+            <h3>All Tasks:</h3>
+            <ul id="allTasks"></ul>
+        </div>
 
-    <div>
-        <h3>Search task by title:</h3>
-        <input type="text" id="taskTitle" size="10" />
-        <input type="button" value="Search" onclick="find();" />
 
-        <p id="singleTask"></p>
-    </div>
+        <div class="col-sm-5">
+            <form id="newTaskForm" method="post">
+                <h3>Create a new Task</h3>
+                <p>
+                    <label for="taskTitle">Title:</label>
+                    <input type="text" name="Title" />
+                </p>
+                <p>
+                    <label for="taskBody">Body:</label>
+                    <input type="text" name="Body" />
+                </p>
+                <input type="button" id="saveTask" value="Save" />
+            </form>
 
-    <div>
-        <form id="newTaskForm" method="post">
-            <h3>Create a new Task</h3>
-            <p>
-                <label for="taskTitle">Title:</label>
-                <input type="text" name="Title" />
-            </p>
-            <p>
-                <label for="taskBody">Body:</label>
-                <input type="text" name="Body" />
-            </p>
-            <input type="button" id="saveTask" value="Save" />
-        </form>
-
-        <p id="singleAddTask"></p>
+            <p id="singleAddTask"></p>
+        </div>
     </div>
 
 </body>
