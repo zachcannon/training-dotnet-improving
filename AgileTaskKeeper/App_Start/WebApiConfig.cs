@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Microsoft.Practices.Unity;
+using AgileTaskKeeper.Resolvers;
+using AgileTaskKeeper.Models;
 
 namespace AgileTaskKeeper
 {
@@ -10,6 +13,9 @@ namespace AgileTaskKeeper
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var container = new UnityContainer();
+            container.RegisterType<IAgileTaskRepository, AgileTaskRepository>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
