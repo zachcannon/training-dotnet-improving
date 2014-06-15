@@ -1,11 +1,5 @@
 ﻿$(document).ready(function () {
-    $.getJSON('api/AgileTask')
-        .done(function (data) {
-            $.each(data, function (key, item) {
-                //$('<li>', { text: formatItem(item) }).appendTo($('#allTasks'));
-                $('#allTasks').append("<li class='taskListItem'>"+formatItem(item)+"</li>")
-            });
-        });
+    displayAllTasks();
 
     $("#saveTask").click(function () {
         $.post('api/AgileTask',
@@ -28,7 +22,7 @@ function displayAllTasks() {
     $.getJSON('api/AgileTask')
         .done(function (data) {
             $.each(data, function (key, item) {
-                $('<li>', { text: formatItem(item) }).appendTo($('#allTasks'));
+                $('#allTasks').append("<li class='taskListItem'>" + formatItem(item) + "</li>")
             });
         });
 };
