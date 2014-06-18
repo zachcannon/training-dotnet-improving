@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AgileTaskKeeper.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgileTaskKeeper.Models
+namespace AgileTaskKeeper.Data
 {
     public interface IAgileTaskRepository
     {

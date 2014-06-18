@@ -195,6 +195,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Data\AgileTaskKeeperContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,8 +205,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AgileTask.cs" />
-    <Compile Include="Models\AgileTaskRepository.cs" />
-    <Compile Include="Models\IAgileTaskRepository.cs" />
+    <Compile Include="Data\AgileTaskRepository.cs" />
+    <Compile Include="Data\IAgileTaskRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resolvers\UnityResolver.cs" />
     <Compile Include="Startup.cs" />

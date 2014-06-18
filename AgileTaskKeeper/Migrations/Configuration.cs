@@ -5,14 +5,14 @@ namespace AgileTaskKeeper.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AgileTaskKeeper.Models.TaskContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AgileTaskKeeper.Data.AgileTaskKeeperContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(AgileTaskKeeper.Models.TaskContext context)
+        protected override void Seed(AgileTaskKeeper.Data.AgileTaskKeeperContext context)
         {
             //  This method will be called after migrating to the latest version.
 
