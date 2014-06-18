@@ -2,7 +2,7 @@
     displayAllTasks();
 
     $("#saveTask").click(function () {
-        $.post('api/AgileTask',
+        $.post('/api/AgileTask',
             $('#newTaskForm').serialize(),
             null,
             'json').done(function (data) {
@@ -19,7 +19,7 @@
     };
 
     function displayAllTasks() {
-        $.getJSON('api/AgileTask')
+        $.getJSON('/api/AgileTask')
             .done(function (data) {
                 $.each(data, function (key, item) {
                     $('#allTasks').append("<li class='taskListItem'>" + formatItem(item) + "</li>")

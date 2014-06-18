@@ -7,6 +7,7 @@ using AgileTaskKeeper.Resolvers;
 using AgileTaskKeeper.Models;
 using System.Web.Http;
 using AgileTaskKeeper.Data;
+using System.Data.Entity;
 
 namespace AgileTaskKeeper
 {
@@ -16,7 +17,9 @@ namespace AgileTaskKeeper
         public static void RegisterUnity(HttpConfiguration config)
         {
             var container = new UnityContainer();
+          
             container.RegisterType<IAgileTaskRepository, AgileTaskRepository>(new HierarchicalLifetimeManager());
+
             config.DependencyResolver = new UnityResolver(container);
         }
         
