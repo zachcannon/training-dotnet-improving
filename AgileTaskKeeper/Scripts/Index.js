@@ -12,17 +12,17 @@
             })
                 
     })
-});
 
-function formatItem(task) {
-    return "Title: " + task.Title + " Body: " + task.Body;
-};
+    function formatItem(task) {
+        return "Title: " + task.Title + " Body: " + task.Body;
+    };
 
-function displayAllTasks() {
-    $.getJSON('api/AgileTask')
-        .done(function (data) {
-            $.each(data, function (key, item) {
-                $('#allTasks').append("<li class='taskListItem'>" + formatItem(item) + "</li>")
+    function displayAllTasks() {
+        $.getJSON('api/AgileTask')
+            .done(function (data) {
+                $.each(data, function (key, item) {
+                    $('#allTasks').append("<li class='taskListItem'>" + formatItem(item) + "</li>")
+                });
             });
-        });
-};
+    };
+});
