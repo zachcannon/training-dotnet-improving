@@ -5,7 +5,11 @@
 <head>
     <title>Home Page</title>   
     @Styles.Render("~/Content/Index.css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/Index.js")
+    @Scripts.Render("~/Scripts/noty/jquery.noty.js")
+    @Scripts.Render("~/Scripts/noty/layouts/top.js")
+    @Scripts.Render("~/Scripts/noty/themes/default.js")
 </head>
 
 <body class="container-fluid">
@@ -33,5 +37,4 @@
             <p id="singleAddTask"></p>
         </div>
     </div>
-
 </body>

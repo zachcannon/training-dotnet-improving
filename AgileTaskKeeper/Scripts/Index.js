@@ -6,7 +6,8 @@
             $('#newTaskForm').serialize(),
             null,
             'json').done(function (data) {
-                alert("Task Successfully Added!");
+                noty({ text: 'Task Successfully Added!' });
+                $('#newTaskForm').trigger("reset");
                 $('#allTasks').empty();
                 displayAllTasks();
             })
