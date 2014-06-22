@@ -9,16 +9,21 @@ namespace AgileTaskKeeper.Data
 {
     public class AgileTaskRepository : IAgileTaskRepository
     {
+        private AgileTaskKeeperContext db = new AgileTaskKeeperContext();
+
         IEnumerable<AgileTask> IAgileTaskRepository.GetAll()
         {
-            AgileTaskKeeperContext db = new AgileTaskKeeperContext();
             return db.GetAllTasks();
         }
 
         AgileTask IAgileTaskRepository.AddTask(AgileTask task)
         {
-            AgileTaskKeeperContext data = new AgileTaskKeeperContext();
-            return data.AddTaskToDb(task);
+            return db.AddTaskToDb(task);
+        }
+
+        bool IAgileTaskRepository.UpdateTask(AgileTask updatedTask)
+        {
+            return db.updateTask(updatedTask);
         }
     }
 }

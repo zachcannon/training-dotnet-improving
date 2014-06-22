@@ -8,17 +8,37 @@
             'json').done(function (data) {
                 noty({ text: 'Task Successfully Added!' });
                 $('#newTaskForm').trigger("reset");
-                $('#allTasks').empty();
                 displayAllTasks();
             })
                 
     })
 
+    $("#updateTask").click(function () {
+        $.ajax({
+            url: '/api/AgileTask',
+            type: 'PUT',
+            data: $('#updateTaskForm').serialize(),
+            success: function (data) {
+                if (data == 'pass') {
+                    noty({ text: 'Task Successfully Updated!' });
+                    $('#updateTaskForm').trigger("reset");
+                    displayAllTasks();
+                } else {
+                    noty({ text: 'The task was not updated, an error occured...' });
+                    $('#updateTaskForm').trigger("reset");
+                }
+                
+            }
+        });
+
+    })
+
     function formatItem(task) {
-        return "Title: " + task.Title + " Body: " + task.Body;
+        return "Title: " + task.Title + " <br/>Body: " + task.Body;
     };
 
     function displayAllTasks() {
+        $('#allTasks').empty();
         $.getJSON('/api/AgileTask')
             .done(function (data) {
                 $.each(data, function (key, item) {

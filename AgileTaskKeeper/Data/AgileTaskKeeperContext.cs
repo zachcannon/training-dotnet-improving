@@ -41,5 +41,20 @@ namespace AgileTaskKeeper.Data
             }
             return new AgileTask("NoTaskFound", "NoTaskFound");
         }
+
+        public bool updateTask(AgileTask updateTask)
+        {
+            using (var db = new AgileTaskKeeperContext())
+            {
+                var taskToUpdate = db.AgileTasks.Find(updateTask.Title);
+                if (taskToUpdate != null)
+                {
+                    taskToUpdate.Body = updateTask.Body;
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }
