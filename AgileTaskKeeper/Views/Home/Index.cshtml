@@ -7,69 +7,74 @@
     @Styles.Render("~/Content/Index.css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/angular.js")
     @Scripts.Render("~/Scripts/Index.js")
     @Scripts.Render("~/Scripts/noty/jquery.noty.js")
     @Scripts.Render("~/Scripts/noty/layouts/top.js")
     @Scripts.Render("~/Scripts/noty/themes/default.js")
 </head>
 
-<body class="container-fluid">
-    <div class="row">
-        <div class="col-sm-7">
-            <h3>All Tasks:</h3>
-            <ul id="allTasks"></ul>
-        </div>
+<body class="container-fluid" ng-app="agileIndexApp">
+    <div ng-controller="agileIndexController">
+        <div class="row">
+            <div class="col-sm-7">
+                <h3>All Tasks:</h3>
+                <ul>
+                    <li class="taskListItem" ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)">Title: {{task.Title}}<br />Body: {{task.Body}}</li>
+                </ul>
+            </div>
 
 
-        <div class="col-sm-5">
-            <h3>Options:</h3>
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Create a new Task
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <form id="newTaskForm" method="post">
-                                <p>
-                                    <label for="taskTitle">Title:</label>
-                                    <input type="text" name="Title" />
-                                </p>
-                                <p>
-                                    <label for="taskBody">Body:</label>
-                                    <input type="text" name="Body" />
-                                </p>
-                                <input type="button" id="saveTask" value="Save" />
-                            </form>                        
+            <div class="col-sm-5">
+                <h3>Options:</h3>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Create a new Task
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <form id="newTaskForm">
+                                    <p>
+                                        <label for="taskTitle">Title:</label>
+                                        <input type="text" name="Title" ng-model="newFormTitle" placeholder="New Title Here" />
+                                    </p>
+                                    <p>
+                                        <label for="taskBody">Body:</label>
+                                        <input type="text" name="Body" ng-model="newFormBody"  placeholder="New Body Here" />
+                                    </p>
+                                    <input type="button" ng-click="saveTask()" value="Save" />
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                Update a new Task - Click on task to select!
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <form id="updateTaskForm" method="post">
-                                <p>
-                                    <label for="taskTitle">Title:</label>
-                                    <input type="text" name="Title" id="updateTitle" disabled />
-                                </p>
-                                <p>
-                                    <label for="newTaskBody">New Body:</label>
-                                    <input type="text" name="Body" />
-                                </p>
-                                <input type="button" id="updateTask" value="Update" />
-                            </form>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    Update a new Task - Click on task to select!
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <form id="updateTaskForm">
+                                    <p>
+                                        <label for="taskTitle">Title:</label>
+                                        <input type="text" name="Title" ng-model="updateFormTitle" placeholder="Click on task to pop" disabled />
+                                    </p>
+                                    <p>
+                                        <label for="newTaskBody">New Body:</label>
+                                        <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
+                                    </p>
+                                    <input type="button" value="Update" ng-click="updateTask()" />
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
