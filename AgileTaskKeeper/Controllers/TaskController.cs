@@ -36,18 +36,11 @@ namespace AgileTaskKeeper.Controllers
         public HttpResponseMessage Put(AgileTask task)
         {
             bool result = _repository.UpdateTask(task);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, "value");
-
+   
             if (result)
-            {
-                response.Content = new StringContent("pass", Encoding.Unicode);
-            }
+                return Request.CreateResponse(HttpStatusCode.OK, "value");
             else
-            {
-                response.Content = new StringContent("fail", Encoding.Unicode);
-            }
-
-            return response;
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, "value");
         }
     }
 }
