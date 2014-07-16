@@ -12,5 +12,6 @@ namespace AgileTaskKeeper.Data
         IEnumerable<AgileTask> GetAll();
         AgileTask AddTask(AgileTask task);
         bool UpdateTask(AgileTask updatedTask);
+        bool DeleteTask(AgileTask deletedTask);
     }
 }

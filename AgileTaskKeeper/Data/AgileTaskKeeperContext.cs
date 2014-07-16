@@ -56,5 +56,21 @@ namespace AgileTaskKeeper.Data
                 return false;
             }
         }
+
+        internal bool deleteTask(AgileTask deletedTask)
+        {
+            using (var db = new AgileTaskKeeperContext())
+            {
+                var taskToDelete = db.AgileTasks.Find(deletedTask.Title);
+
+                if (taskToDelete != null)
+                {
+                    db.AgileTasks.Remove(taskToDelete);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

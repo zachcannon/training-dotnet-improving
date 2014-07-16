@@ -24,6 +24,13 @@
                     url: '/api/AgileTask',
                     data: input
                 });
+            },
+            deleteTask: function (input) {
+                return $http({
+                    method: 'POST',
+                    url: '/api/AgileTask/Delete',
+                    data: input
+                });
             }
         };
     });

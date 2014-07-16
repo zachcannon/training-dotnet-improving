@@ -27,9 +27,22 @@ namespace AgileTaskKeeper.Controllers
         }
 
         // POST api/Task
+        [HttpPost]
         public AgileTask Post(AgileTask task)
         {
             return _repository.AddTask(task);
+        }
+
+        [Route("api/AgileTask/Delete")]
+        [HttpPost]
+        public HttpResponseMessage DeleteAStory([FromBody] AgileTask storyToDelete)
+        {
+            bool result = _repository.DeleteTask(storyToDelete);
+
+            if (result)
+                return Request.CreateResponse(HttpStatusCode.OK, "value");
+            else
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, "value");
         }
 
         // Update api/Task

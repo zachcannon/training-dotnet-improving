@@ -25,5 +25,10 @@ namespace AgileTaskKeeper.Data
         {
             return db.updateTask(updatedTask);
         }
+
+        bool IAgileTaskRepository.DeleteTask(AgileTask deletedTask)
+        {
+            return db.deleteTask(deletedTask);
+        }
     }
 }
