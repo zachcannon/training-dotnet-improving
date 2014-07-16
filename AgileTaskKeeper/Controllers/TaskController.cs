@@ -33,6 +33,8 @@ namespace AgileTaskKeeper.Controllers
             return _repository.AddTask(task);
         }
 
+        // HACK: IIS Express will not allow a HTTP DELETE request
+        // I made this a POST request with a custom route to get around DELETE block
         [Route("api/AgileTask/Delete")]
         [HttpPost]
         public HttpResponseMessage DeleteAStory([FromBody] AgileTask storyToDelete)
