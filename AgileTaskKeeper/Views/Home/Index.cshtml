@@ -3,9 +3,8 @@
 }
 
 <head>
-    <title>Home Page</title>
+    <title>Home Page</title>        
     @Styles.Render("~/Content/index.css")
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/angular.js")
     @Scripts.Render("~/Scripts/index/index.js")
@@ -18,10 +17,20 @@
 <body class="container-fluid" ng-app="agileIndexApp">
     <div ng-controller="agileIndexController">
         <div class="row">
+            <div id="webpageHeader">
+                <div id="headerMessage">Welcome to Your AgileTaskKeeper - Let's get Agile!</div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-7">
                 <h3>All Tasks:</h3>
                 <ul>
-                    <li class="taskListItem" ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)">Title: {{task.Title}}<br />Body: {{task.Body}}</li>
+                    <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'" 
+                        ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)"> 
+
+                        <span>Title: {{task.Title}}</span><span>Body: {{task.Body}}</span>
+                    </li>
                 </ul>
             </div>
 
@@ -39,21 +48,19 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <form id="newTaskForm">
+                                <form id="updateTaskForm">
                                     <p>
                                         <label for="taskTitle">Title:</label>
-                                        <input type="text" name="Title" ng-model="newFormTitle" placeholder="New Title Here" />
+                                        <input type="text" name="Title" ng-model="updateFormTitle" placeholder="Click on task to pop" disabled />
                                     </p>
                                     <p>
-                                        <label for="taskBody">Body:</label>
-                                        <input type="text" name="Body" ng-model="newFormBody" placeholder="New Body Here" />
+                                        <label for="newTaskBody">New Body:</label>
+                                        <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
                                     </p>
-                                    <input type="button" ng-click="saveTask()" value="Save" />
-                                </form>
-                            </div>
+                                    <input type="button" value="Update" ng-click="updateTask()" />
+                                </form>                            </div>
                         </div>
                     </div>
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -62,7 +69,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <form id="updateTaskForm">
                                     <p>
@@ -74,11 +81,9 @@
                                         <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
                                     </p>
                                     <input type="button" value="Update" ng-click="updateTask()" />
-                                </form>
-                            </div>
+                                </form>                            </div>
                         </div>
                     </div>
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -87,7 +92,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse in">
+                        <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <form id="deleteTaskForm">
                                     <p>
@@ -95,7 +100,7 @@
                                         <input type="text" name="Title" ng-model="deleteFormTitle" placeholder="Click on task to pop" disabled />
                                     </p>
                                     <input type="button" value="Delete" ng-click="deleteTask()" />
-                                </form>
+                                </form>                            
                             </div>
                         </div>
                     </div>

@@ -70,7 +70,5 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
         $scope.deleteFormTitle = task.Title;
     }
 
-    $('.collapse').collapse();
-
     $scope.displayAllTasks();
 });

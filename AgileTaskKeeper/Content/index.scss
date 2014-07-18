@@ -1,18 +1,41 @@
 body {
-    background-color: #ac91ce;
+    background-color: mintcream;
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
+
+	.taskListItem {
+		padding: 2px;
+		margin: 5px;
+		border: 2px solid;
+		border-radius: 10px;
+		width: 90%;
+		font-size: 120%;
+		
+		span {
+			display:inline-block;
+			width: 50%;
+		}
+	}
+
+	.evenTaskRow {
+		background-color: white;
+	}
+
+	.oddTaskRow {
+		background-color: lightgreen;
+	}
 }
 
-.taskListItem {
-    background-color: white;
-    padding: 2px;
-    margin: 5px;
-    border: 2px solid;
-    border-radius: 10px;
-    text-align: center;
-    width: 90%;
+#webpageHeader {
+	background-color: #F2F2FA;
+	height: 30px;
+	margin-top: -50px;
+}
+
+#headerMessage {
+	text-align: center;
+	font-size: 150%;
 }

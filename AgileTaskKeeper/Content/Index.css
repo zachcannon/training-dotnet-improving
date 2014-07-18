@@ -1,16 +1,30 @@
 body {
-  background-color: #ac91ce; }
+  background-color: mintcream; }
 
 ul {
   list-style-type: none;
   padding-left: 0; }
+  ul .taskListItem {
+    padding: 2px;
+    margin: 5px;
+    border: 2px solid;
+    border-radius: 10px;
+    width: 90%;
+    font-size: 120%; }
+    ul .taskListItem span {
+      display: inline-block;
+      width: 50%; }
+  ul .evenTaskRow {
+    background-color: white; }
+  ul .oddTaskRow {
+    background-color: lightgreen; }
 
-.taskListItem {
-  background-color: white;
-  padding: 2px;
-  margin: 5px;
-  border: 2px solid;
-  border-radius: 10px;
+#webpageHeader {
+  background-color: #F2F2FA;
+  height: 30px;
+  margin-top: -50px; }
+
+#headerMessage {
   text-align: center;
-  width: 90%; }
+  font-size: 150%; }
 
