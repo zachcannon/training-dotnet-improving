@@ -4,7 +4,7 @@
 
 <head>
     <title>Home Page</title>
-    @Styles.Render("~/Content/Index.css")
+    @Styles.Render("~/Content/index.css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/angular.js")
@@ -46,7 +46,7 @@
                                     </p>
                                     <p>
                                         <label for="taskBody">Body:</label>
-                                        <input type="text" name="Body" ng-model="newFormBody"  placeholder="New Body Here" />
+                                        <input type="text" name="Body" ng-model="newFormBody" placeholder="New Body Here" />
                                     </p>
                                     <input type="button" ng-click="saveTask()" value="Save" />
                                 </form>

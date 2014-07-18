@@ -51,7 +51,7 @@ namespace AgileTaskKeeper.Controllers
         public HttpResponseMessage Put(AgileTask task)
         {
             bool result = _repository.UpdateTask(task);
-   
+
             if (result)
                 return Request.CreateResponse(HttpStatusCode.OK, "value");
             else

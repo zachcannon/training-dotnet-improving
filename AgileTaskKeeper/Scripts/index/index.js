@@ -9,8 +9,8 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'Error retrieving tasks from backend...', 'timeout': '5000' });
-            });            
-        
+            });
+
     };
 
     $scope.resetAllFormFields = function () {
