@@ -3,15 +3,23 @@
 }
 
 <head>
-    <title>Home Page</title>        
+    <title>@ViewBag.Title</title>     
+    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/bootstrap.css")     
     @Styles.Render("~/Content/index.css")
+
+    @Scripts.Render("~/Scripts/jquery-2.1.1.js")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/angular.js")
+
     @Scripts.Render("~/Scripts/index/index.js")
-    @Scripts.Render("~/Scripts/index/taskFactory.js")
     @Scripts.Render("~/Scripts/noty/jquery.noty.js")
     @Scripts.Render("~/Scripts/noty/layouts/top.js")
     @Scripts.Render("~/Scripts/noty/themes/default.js")
+
+    @Scripts.Render("~/Scripts/index/taskFactory.js")
+    
+    <!--<script data-main="Scripts/index/index" src="Scripts/require.js"></script>-->
 </head>
 
 <body class="container-fluid" ng-app="agileIndexApp">
@@ -48,17 +56,18 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <form id="updateTaskForm">
+                                <form id="newTaskForm">
                                     <p>
                                         <label for="taskTitle">Title:</label>
-                                        <input type="text" name="Title" ng-model="updateFormTitle" placeholder="Click on task to pop" disabled />
+                                        <input type="text" name="Title" ng-model="newFormTitle" placeholder="New title here..." />
                                     </p>
                                     <p>
                                         <label for="newTaskBody">New Body:</label>
-                                        <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
+                                        <input type="text" name="Body" ng-model="newFormBody" placeholder="New body here..." />
                                     </p>
-                                    <input type="button" value="Update" ng-click="updateTask()" />
-                                </form>                            </div>
+                                    <input type="button" value="Save" ng-click="saveTask()" />
+                                </form>                            
+                            </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
