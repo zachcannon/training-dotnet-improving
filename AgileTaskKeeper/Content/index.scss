@@ -1,3 +1,5 @@
+$element-padding: 2px;
+
 body {
     background-color: mintcream;
 }
@@ -7,9 +9,9 @@ ul {
     padding-left: 0;
 
 	.taskListItem {
-		padding: 2px;
+		padding: $element-padding;
 		margin: 5px;
-		border: 2px solid;
+		border: $element-padding solid;
 		border-radius: 10px;
 		width: 90%;
 		font-size: 120%;
