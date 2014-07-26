@@ -27,6 +27,7 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
+                List<AgileTask> foo = db.AgileTasks.ToList();
                 return db.AgileTasks.ToList();
             }
         }
