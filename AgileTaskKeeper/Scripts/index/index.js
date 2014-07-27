@@ -18,6 +18,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
         $scope.newFormBody = "";
         $scope.updateFormTitle = "";
         $scope.updateFormBody = "";
+        $scope.updateFormStatus = "";
         $scope.deleteFormTitle = "";
     }
 
@@ -67,7 +68,21 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
 
     $scope.updateTitleBox = function (task) {
         $scope.updateFormTitle = task.Title;
+        $scope.updateFormStatus = $scope.translateStatus(task.MyStatus);
         $scope.deleteFormTitle = task.Title;
+    }
+
+    $scope.translateStatus = function (enumId) {
+        if (enumId == 0)
+            return "Pending";
+
+        if (enumId == 1) 
+            return "Working";
+      
+        if (enumId == 2)
+            return "Finished";
+
+        return "Not a valid status";
     }
 
     $scope.displayAllTasks();

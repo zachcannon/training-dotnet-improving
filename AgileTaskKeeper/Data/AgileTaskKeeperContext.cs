@@ -43,7 +43,7 @@ namespace AgileTaskKeeper.Data
             return new AgileTask("NoTaskFound", "NoTaskFound");
         }
 
-        public bool updateTask(AgileTask updateTask)
+        public bool UpdateTask(AgileTask updateTask)
         {
             using (var db = new AgileTaskKeeperContext())
             {
@@ -51,6 +51,7 @@ namespace AgileTaskKeeper.Data
                 if (taskToUpdate != null)
                 {
                     taskToUpdate.Body = updateTask.Body;
+                    taskToUpdate.MyStatus = updateTask.MyStatus;
                     db.SaveChanges();
                     return true;
                 }
@@ -58,7 +59,7 @@ namespace AgileTaskKeeper.Data
             }
         }
 
-        internal bool deleteTask(AgileTask deletedTask)
+        public bool DeleteTask(AgileTask deletedTask)
         {
             using (var db = new AgileTaskKeeperContext())
             {

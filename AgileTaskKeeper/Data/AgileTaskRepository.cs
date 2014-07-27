@@ -23,12 +23,12 @@ namespace AgileTaskKeeper.Data
 
         bool IAgileTaskRepository.UpdateTask(AgileTask updatedTask)
         {
-            return db.updateTask(updatedTask);
+            return db.UpdateTask(updatedTask);
         }
 
         bool IAgileTaskRepository.DeleteTask(AgileTask deletedTask)
         {
-            return db.deleteTask(deletedTask);
+            return db.DeleteTask(deletedTask);
         }
     }
 }

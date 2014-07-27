@@ -33,7 +33,7 @@
                     <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'" 
                         ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)"> 
 
-                        <span>Title: {{task.Title}}</span><span>Body: {{task.Body}}</span>
+                        <span>Title: {{task.Title}}</span><span>Body: {{task.Body}}</span><span>Status: {{translateStatus([[task.MyStatus]])}}</span>
                     </li>
                 </ul>
             </div>
@@ -70,7 +70,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    Update a new Task - Click on task to select!
+                                    Update a Task - Click on task to select!
                                 </a>
                             </h4>
                         </div>
@@ -85,8 +85,13 @@
                                         <label for="newTaskBody">New Body:</label>
                                         <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
                                     </p>
+                                    <p>
+                                        <label for="newTaskStatus">Status:</label>
+                                        <input type="text" name="MyStatus" ng-model="updateFormStatus" placeholder="New status here..." />
+                                    </p>
                                     <input type="button" value="Update" ng-click="updateTask()" />
-                                </form>                            </div>
+                                </form>                            
+                            </div>
                         </div>
                     </div>
                     <div class="panel panel-default">

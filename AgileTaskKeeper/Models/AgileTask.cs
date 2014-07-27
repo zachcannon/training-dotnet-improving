@@ -11,7 +11,6 @@ namespace AgileTaskKeeper.Models
     {
         [Key]
         public String Title { get; set; }
-
         public String Body { get; set; }
 
         [Column("TaskStatusId")]
