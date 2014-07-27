@@ -2,6 +2,8 @@
 
 window.app.controller("agileIndexController", function ($scope, taskFactory) {
 
+    $scope.possibleStatuses = ["Pending", "Working", "Finished"];
+
     $scope.displayAllTasks = function () {
         taskFactory.getTasks().
             success(function (data, status, headers, config) {
@@ -73,16 +75,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
     }
 
     $scope.translateStatus = function (enumId) {
-        if (enumId == 0)
-            return "Pending";
-
-        if (enumId == 1) 
-            return "Working";
-      
-        if (enumId == 2)
-            return "Finished";
-
-        return "Not a valid status";
+        return $scope.possibleStatuses[enumId];
     }
 
     $scope.displayAllTasks();
