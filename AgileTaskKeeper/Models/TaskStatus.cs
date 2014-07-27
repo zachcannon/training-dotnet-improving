@@ -6,18 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AgileTaskKeeper.Models
 {
-    public class TaskStatus
+    public enum TaskStatus
     {
-        [Key]
-        public int TaskStatusId { get; set; }
-        public String StatusText { get; set; }
-
-        public TaskStatus() { }
-
-        public TaskStatus(int TaskStatusId, String StatusText)
-        {
-            this.TaskStatusId = TaskStatusId;
-            this.StatusText = StatusText;
-        }
+        Pending = 0, 
+        Working = 1, 
+        Finished = 2
     }
 }

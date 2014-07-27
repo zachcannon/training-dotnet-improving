@@ -11,10 +11,10 @@ namespace AgileTaskKeeper.Models
     {
         [Key]
         public String Title { get; set; }
+
         public String Body { get; set; }
-        public int TaskStatusId {get; set;}
-        
-        [ForeignKey("TaskStatusId")]
+
+        [Column("TaskStatusId")]
         public virtual TaskStatus MyStatus { get; set; }
 
         public AgileTask() { }
