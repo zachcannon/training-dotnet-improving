@@ -88,10 +88,10 @@
                                     </p>
                                     <p>
                                         <label for="newTaskStatus">Status:</label>
-                                        <input type="text" name="MyStatus" ng-model="updateFormStatus" placeholder="New status here..." />
+                                        <select name="MyStatus" ng-model="updateFormStatus" ng-options="status for status in possibleStatuses"></select>
                                     </p>
                                     <input type="button" value="Update" ng-click="updateTask()" />
-                                </form>                            
+                                </form>                          
                             </div>
                         </div>
                     </div>

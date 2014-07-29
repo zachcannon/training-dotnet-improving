@@ -76,6 +76,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
 
     $scope.updateTitleBox = function (task) {
         $scope.updateFormTitle = task.Title;
+        $scope.updateFormBody = task.Body;
         $scope.updateFormStatus = $scope.translateStatus(task.MyStatus);
         $scope.deleteFormTitle = task.Title;
     }
