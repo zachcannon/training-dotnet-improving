@@ -1,8 +1,14 @@
 ﻿window.app = angular.module("agileIndexApp", []);
 
-window.app.controller("agileIndexController", function ($scope, taskFactory) {
+window.app.controller("agileIndexController", function ($scope, taskFactory, statusFactory) {
 
-    $scope.possibleStatuses = ["Pending", "Working", "Finished"];
+    $scope.getPossibleStatuses = function () {
+        statusFactory.getStatuses().
+            success(function (data, status, headers, config) {
+                $scope.possibleStatuses = data;
+            })
+
+    };
 
     $scope.displayAllTasks = function () {
         taskFactory.getTasks().
@@ -78,5 +84,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory) {
         return $scope.possibleStatuses[enumId];
     }
 
+    // Run these two methods after page and js load. 
+    $scope.getPossibleStatuses();
     $scope.displayAllTasks();
 });
