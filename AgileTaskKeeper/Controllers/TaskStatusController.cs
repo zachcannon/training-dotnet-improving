@@ -13,7 +13,7 @@ namespace AgileTaskKeeper.Controllers
         // GET api/TaskStatus
         public IEnumerable<String> Get()
         {
-            return Enum.GetNames(typeof(TaskStatus));;
+            return Enum.GetNames(typeof(TaskStatus));
         }
     }
 }
