@@ -9,7 +9,7 @@ namespace AgileTaskKeeper.Data
 {
     public class AgileTaskKeeperContext : DbContext
     {
-        public DbSet<AgileTask> AgileTasks { get; set; }
+        private DbSet<AgileTask> AgileTasks { get; set; }
 
         public AgileTask AddTaskToDb(AgileTask task)
         {
@@ -27,7 +27,6 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                List<AgileTask> foo = db.AgileTasks.ToList();
                 return db.AgileTasks.ToList();
             }
         }

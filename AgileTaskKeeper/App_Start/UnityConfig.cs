@@ -19,6 +19,7 @@ namespace AgileTaskKeeper
             var container = new UnityContainer();
           
             container.RegisterType<IAgileTaskRepository, AgileTaskRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITeamMemberRepository, TeamMemberRepository>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }

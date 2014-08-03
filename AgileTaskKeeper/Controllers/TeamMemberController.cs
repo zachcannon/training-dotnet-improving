@@ -1,4 +1,5 @@
-﻿using AgileTaskKeeper.Models;
+﻿using AgileTaskKeeper.Data;
+using AgileTaskKeeper.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace AgileTaskKeeper.Controllers
 {
     public class TeamMemberController : ApiController
     {
+        private ITeamMemberRepository _repository;
+
+        public TeamMemberController(ITeamMemberRepository repository)
+        {
+            this._repository = repository;
+        }
 
         public IEnumerable<TeamMember> Get()
         {
@@ -23,7 +30,7 @@ namespace AgileTaskKeeper.Controllers
         [HttpPost]
         public void Post(TeamMember memberToAdd)
         {
-            memberToAdd.Name = "foo";
+            _repository.AddTeamMember(memberToAdd);
         }
     }
 }
