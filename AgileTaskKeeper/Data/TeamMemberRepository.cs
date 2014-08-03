@@ -8,7 +8,7 @@ namespace AgileTaskKeeper.Data
 {
     public class TeamMemberRepository : ITeamMemberRepository
     {
-        private AgileTaskKeeper db = new AgileTaskKeeper();
+        private AgileTaskKeeperContext db = new AgileTaskKeeperContext();
 
         public IEnumerable<TeamMember> GetAll()
         {
