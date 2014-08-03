@@ -10,7 +10,9 @@ namespace AgileTaskKeeper.Data
     public class AgileTaskKeeperContext : DbContext
     {
         private DbSet<AgileTask> AgileTasks { get; set; }
+        private DbSet<TeamMember> TeamMembers { get; set; }
 
+        //Agile Task Functions
         public AgileTask AddTaskToDb(AgileTask task)
         {
             var taskToAdd = task;
@@ -71,6 +73,26 @@ namespace AgileTaskKeeper.Data
                     return true;
                 }
                 return false;
+            }
+        }
+
+        //Team Member Functions
+        public IEnumerable<TeamMember> GetAllTeamMembers()
+        {
+            using (var db = new AgileTaskKeeperContext())
+            {
+                return db.TeamMembers.ToList();
+            }
+        }
+
+        public void AddATeamMember(TeamMember member)
+        {
+            var memberToAdd = member;
+
+            using (var db = new AgileTaskKeeperContext())
+            {
+                db.TeamMembers.Add(memberToAdd);
+                db.SaveChanges();
             }
         }
     }

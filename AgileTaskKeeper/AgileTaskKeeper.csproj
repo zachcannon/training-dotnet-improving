@@ -201,7 +201,6 @@
     <Compile Include="Controllers\TeamMemberController.cs" />
     <Compile Include="Data\AgileTaskKeeperContext.cs" />
     <Compile Include="Data\ITeamMemberRepository.cs" />
-    <Compile Include="Data\TeamMemberContext.cs" />
     <Compile Include="Data\TeamMemberRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
