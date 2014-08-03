@@ -77,12 +77,31 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
     $scope.updateTitleBox = function (task) {
         $scope.updateFormTitle = task.Title;
         $scope.updateFormBody = task.Body;
-        $scope.updateFormStatus = $scope.translateStatus(task.MyStatus);
+        $scope.updateFormStatus = $scope.findStatusInSelect(task.MyStatus);
         $scope.deleteFormTitle = task.Title;
     }
 
+    $scope.findStatusInSelect = function (taskId) {
+        var i = 0;
+        var size = $scope.possibleStatuses.length;
+
+        for (i = 0; i < size; i++) {
+            if ($scope.possibleStatuses[i].Value == taskId) {
+                return $scope.possibleStatuses[i];
+            }
+        }
+    }
+
     $scope.translateStatus = function (enumId) {
-        return $scope.possibleStatuses[enumId];
+        var i = 0;
+        var size = $scope.possibleStatuses.length;
+
+        for (i = 0; i < size; i++) {
+            if ($scope.possibleStatuses[i].Value == enumId) {
+                return $scope.possibleStatuses[i].Text;
+            }
+        }
+        return ("Could not translate this enum!!");
     }
 
     // Run these two methods after page and js load. 

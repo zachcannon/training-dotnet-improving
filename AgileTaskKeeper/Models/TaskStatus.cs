@@ -8,8 +8,13 @@ namespace AgileTaskKeeper.Models
 {
     public enum TaskStatus
     {
-        Pending = 0, 
-        Working = 1, 
-        Finished = 2
+        [Display(Name = "Pending")]
+        Pending = 0,
+
+        [Display(Name = "Working")]
+        Working,
+
+        [Display(Name = "Finished")]
+        Finished
     }
 }
