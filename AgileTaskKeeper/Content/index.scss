@@ -8,6 +8,21 @@ ul {
     list-style-type: none;
     padding-left: 0;
 
+	.memberListItem {
+		padding: $element-padding;
+		margin: 5px;
+		border: $element-padding solid;
+		border-radius: 5px;
+		width: 90%;
+		font-size: 120%;
+		background-color: white;
+
+		span {
+			display:inline-block;
+			width: 33%;
+		}
+	}
+
 	.taskListItem {
 		padding: $element-padding;
 		margin: 5px;

@@ -4,6 +4,17 @@ body {
 ul {
   list-style-type: none;
   padding-left: 0; }
+  ul .memberListItem {
+    padding: 2px;
+    margin: 5px;
+    border: 2px solid;
+    border-radius: 5px;
+    width: 90%;
+    font-size: 120%;
+    background-color: white; }
+    ul .memberListItem span {
+      display: inline-block;
+      width: 33%; }
   ul .taskListItem {
     padding: 2px;
     margin: 5px;

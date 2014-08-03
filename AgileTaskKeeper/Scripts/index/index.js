@@ -1,7 +1,8 @@
 ﻿window.app = angular.module("agileIndexApp", []);
 
-window.app.controller("agileIndexController", function ($scope, taskFactory, statusFactory) {
+window.app.controller("agileIndexController", function ($scope, taskFactory, statusFactory, teamMemberFactory) {
 
+    //--------------------------- STATUS SECTION ---------------------------
     $scope.getPossibleStatuses = function () {
         statusFactory.getStatuses().
             success(function (data, status, headers, config) {
@@ -9,6 +10,11 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             })
 
     };
+
+    $scope.getPossibleStatuses();
+    //--------------------------- END STATUS SECTION ---------------------------
+
+    //--------------------------- TASK SECTION ---------------------------
 
     $scope.displayAllTasks = function () {
         taskFactory.getTasks().
@@ -104,7 +110,30 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         return ("Could not translate this enum!!");
     }
 
-    // Run these two methods after page and js load. 
-    $scope.getPossibleStatuses();
+
     $scope.displayAllTasks();
+    //--------------------------- END TASK SECTION ---------------------------
+
+    //--------------------------- TEAM MEMBER SECTION ---------------------------    
+    $scope.getListOfTeamMembers = function () {
+
+        teamMemberFactory.getTeamMembers().
+            success(function (data) {
+                $scope.listOfTeamMembers = data;
+            })
+    }
+
+    $scope.addTeamMember = function () {
+        teamMemberFactory.addTeamMember($('#newTeamMemberForm').serialize()).
+            success(function (data, status, headers, config) {
+                noty({ 'text': 'Team Member Successfully Added!', 'timeout': '5000' });
+                $scope.getListOfTeamMembers();
+            }).
+            error(function (data, status, headers, config) {
+                noty({ 'text': 'Error adding team member...', 'timeout': '5000' });
+            });
+    };
+
+    $scope.getListOfTeamMembers();
+    //--------------------------- END TEAM MEMBER SECTION ---------------------------   
 });

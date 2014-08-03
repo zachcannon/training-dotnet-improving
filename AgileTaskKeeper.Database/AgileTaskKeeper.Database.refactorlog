@@ -28,4 +28,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="TaskStatusId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="897c4ac4-1203-4f7f-bdca-ae428ced277d" ChangeDateTime="08/03/2014 18:49:20">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMemberId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ffcd53b6-d53e-4b95-ab77-e0de1dc657f5" ChangeDateTime="08/03/2014 18:49:23">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[TeamMemberId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="359b9c25-a055-4157-aee0-e984cf501064" ChangeDateTime="08/03/2014 18:52:50">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[MemberName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
 </Operations>

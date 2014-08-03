@@ -14,6 +14,7 @@
     @Scripts.Render("~/Scripts/index/index.js")
     @Scripts.Render("~/Scripts/index/taskFactory.js")
     @Scripts.Render("~/Scripts/index/statusFactory.js")
+    @Scripts.Render("~/Scripts/index/teamMemberFactory.js")
     @Scripts.Render("~/Scripts/noty/jquery.noty.js")
     @Scripts.Render("~/Scripts/noty/layouts/top.js")
     @Scripts.Render("~/Scripts/noty/themes/default.js")
@@ -29,6 +30,7 @@
 
         <div class="row">
             <div class="col-sm-7">
+
                 <h3>All Tasks:</h3>
                 <ul>
                     <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'" 
@@ -37,6 +39,19 @@
                         <span>Title: {{task.Title}}</span><span>Body: {{task.Body}}</span><span>Status: {{translateStatus([[task.MyStatus]])}}</span>
                     </li>
                 </ul>
+
+                <h3>Team Members: </h3>
+                <form id="newTeamMemberForm">
+                    <label for="newTeamMemberName">Add: </label>
+                    <input type="text" name="Name" ng-model="newMemberName" placeholder="Team member's name?" />
+                    <input type="button" value="Go!" ng-click="addTeamMember()" />
+                </form>
+                <ul>
+                    <li class="memberListItem" ng-repeat="teamMember in listOfTeamMembers">
+                        <span>Id: {{teamMember.Id}}</span>  <span>Name: {{teamMember.Name}}</span>
+                    </li>
+                </ul>
+
             </div>
 
 
