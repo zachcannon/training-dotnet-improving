@@ -48,7 +48,8 @@
                 </form>
                 <ul>
                     <li class="memberListItem" ng-repeat="teamMember in listOfTeamMembers">
-                        <span>Id: {{teamMember.Id}}</span>  <span>Name: {{teamMember.Name}}</span>
+                        <span>Id: {{teamMember.Id}}</span>  <span>Name: {{teamMember.Name}}</span> 
+                            <span><input type="button" value="Delete" ng-click="removeTeamMember([[teamMember.Id]])"/></span>
                     </li>
                 </ul>
 

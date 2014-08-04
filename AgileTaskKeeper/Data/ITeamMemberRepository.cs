@@ -11,5 +11,6 @@ namespace AgileTaskKeeper.Data
     {
         IEnumerable<TeamMember> GetAll();
         void AddTeamMember(TeamMember member);
+        void RemoveTeamMember(int idToRemove);
     }
 }

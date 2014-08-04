@@ -128,9 +128,21 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Team Member Successfully Added!', 'timeout': '5000' });
                 $scope.getListOfTeamMembers();
+                $scope.newMemberName = "";
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'Error adding team member...', 'timeout': '5000' });
+            });
+    };
+
+    $scope.removeTeamMember = function (teamMemberToRemove) {
+        teamMemberFactory.removeTeamMember(teamMemberToRemove).
+            success(function (data, status, headers, config) {
+                noty({ 'text': 'Team Member Successfully Removed!', 'timeout': '5000' });
+                $scope.getListOfTeamMembers();
+            }).
+            error(function (data, status, headers, config) {
+                noty({ 'text': 'Error removing team member...', 'timeout': '5000' });
             });
     };
 

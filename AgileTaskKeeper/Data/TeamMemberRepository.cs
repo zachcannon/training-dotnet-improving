@@ -19,5 +19,10 @@ namespace AgileTaskKeeper.Data
         {
             db.AddATeamMember(member);
         }
+
+        public void RemoveTeamMember(int idToRemove)
+        {
+            db.RemoveTeamMember(idToRemove);
+        }
     }
 }

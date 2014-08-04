@@ -15,6 +15,13 @@
                     url: 'api/TeamMember',
                     data: input
                 });
+            },
+
+            removeTeamMember: function (input) {
+                return $http({
+                    method: 'POST',
+                    url: 'api/TeamMember/Delete?idToRemove=' + input
+                });
             }
         };
     });

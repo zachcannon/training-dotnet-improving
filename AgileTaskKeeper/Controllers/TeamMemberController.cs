@@ -20,17 +20,20 @@ namespace AgileTaskKeeper.Controllers
 
         public IEnumerable<TeamMember> Get()
         {
-            List<TeamMember> foo = new List<TeamMember>();
-            foo.Add(new TeamMember(1, "Jackson Badass"));
-            foo.Add(new TeamMember(2, "Jackson Smartass"));
-
-            return foo;
+            return _repository.GetAll();
         }
 
         [HttpPost]
         public void Post(TeamMember memberToAdd)
         {
             _repository.AddTeamMember(memberToAdd);
+        }
+
+        [Route("api/TeamMember/Delete")]
+        [HttpPost]
+        public void Delete(int idToRemove)
+        {
+            _repository.RemoveTeamMember(idToRemove);
         }
     }
 }

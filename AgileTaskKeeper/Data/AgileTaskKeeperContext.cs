@@ -1,6 +1,7 @@
 ﻿using AgileTaskKeeper.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -9,20 +10,14 @@ namespace AgileTaskKeeper.Data
 {
     public class AgileTaskKeeperContext : DbContext
     {
-        private DbSet<AgileTask> AgileTasks { get; set; }
-        private DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<AgileTask> AgileTasks { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
 
-        //Agile Task Functions
-        public AgileTask AddTaskToDb(AgileTask task)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            var taskToAdd = task;
-
-            using (var db = new AgileTaskKeeperContext())
-            {
-                db.AgileTasks.Add(taskToAdd);
-                db.SaveChanges();
-                return task;
-            }
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<TeamMember>().Property(r => r.Id)
+                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
 
         public IEnumerable<AgileTask> GetAllTasks()
@@ -42,6 +37,20 @@ namespace AgileTaskKeeper.Data
                     return task;
             }
             return new AgileTask("NoTaskFound", "NoTaskFound");
+        }
+
+
+        //Agile Task Functions
+        public AgileTask AddTaskToDb(AgileTask task)
+        {
+            var taskToAdd = task;
+
+            using (var db = new AgileTaskKeeperContext())
+            {
+                db.AgileTasks.Add(taskToAdd);
+                db.SaveChanges();
+                return task;
+            }
         }
 
         public bool UpdateTask(AgileTask updateTask)
@@ -87,11 +96,20 @@ namespace AgileTaskKeeper.Data
 
         public void AddATeamMember(TeamMember member)
         {
-            var memberToAdd = member;
-
+            var teamMember = member;
             using (var db = new AgileTaskKeeperContext())
             {
-                db.TeamMembers.Add(memberToAdd);
+                db.TeamMembers.Add(teamMember);
+                db.SaveChanges();
+            }
+        }
+
+        public void RemoveTeamMember(int idToRemove)
+        {
+            using (var db = new AgileTaskKeeperContext())
+            {
+                var teamMemberToRemove = db.TeamMembers.Find(idToRemove);
+                db.TeamMembers.Remove(teamMemberToRemove);
                 db.SaveChanges();
             }
         }
