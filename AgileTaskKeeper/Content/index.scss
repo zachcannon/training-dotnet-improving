@@ -16,10 +16,32 @@ ul {
 		width: 90%;
 		font-size: 120%;
 		background-color: white;
+		position: relative;
 
 		span {
 			display:inline-block;
-			width: 30%;
+		}
+
+		.memberId {
+			visibility: hidden;
+			width: 75px;
+		}
+
+		.memberName {
+			position: absolute;
+			float: left;
+			left: 1%;
+		}
+
+		.memberTask {
+			position: absolute;
+			float: left;
+			left: 35%;
+		}
+
+		.memberDelete {
+			float: right;
+			margin-top: -3px;
 		}
 	}
 
@@ -33,7 +55,7 @@ ul {
 		
 		span {
 			display:inline-block;
-			width: 33%;
+			width: 30%;
 		}
 	}
 

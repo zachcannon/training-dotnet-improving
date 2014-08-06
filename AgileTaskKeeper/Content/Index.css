@@ -11,10 +11,24 @@ ul {
     border-radius: 5px;
     width: 90%;
     font-size: 120%;
-    background-color: white; }
+    background-color: white;
+    position: relative; }
     ul .memberListItem span {
-      display: inline-block;
-      width: 30%; }
+      display: inline-block; }
+    ul .memberListItem .memberId {
+      visibility: hidden;
+      width: 75px; }
+    ul .memberListItem .memberName {
+      position: absolute;
+      float: left;
+      left: 1%; }
+    ul .memberListItem .memberTask {
+      position: absolute;
+      float: left;
+      left: 35%; }
+    ul .memberListItem .memberDelete {
+      float: right;
+      margin-top: -3px; }
   ul .taskListItem {
     padding: 2px;
     margin: 5px;
@@ -24,7 +38,7 @@ ul {
     font-size: 120%; }
     ul .taskListItem span {
       display: inline-block;
-      width: 33%; }
+      width: 30%; }
   ul .evenTaskRow {
     background-color: white; }
   ul .oddTaskRow {

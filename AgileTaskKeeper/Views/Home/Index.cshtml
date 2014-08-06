@@ -34,9 +34,10 @@
                 <h3>All Tasks:</h3>
                 <ul>
                     <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'" 
-                        ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)"> 
-
-                        <span>Title: {{task.Title}}</span><span>Body: {{task.Body}}</span><span>Status: {{translateStatus([[task.MyStatus]])}}</span>
+                        ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)">
+                        <span>Title: {{task.Title}}</span>
+                        <span>Body: {{task.Body}}</span>
+                        <span>Status: {{translateStatus([[task.MyStatus]])}}</span>
                     </li>
                 </ul>
 
@@ -48,8 +49,10 @@
                 </form>
                 <ul>
                     <li class="memberListItem" ng-repeat="teamMember in listOfTeamMembers">
-                        <span>Id: {{teamMember.Id}}</span>  <span>Name: {{teamMember.Name}}</span> 
-                            <span><input type="button" value="Delete" ng-click="removeTeamMember([[teamMember.Id]])"/></span>
+                        <span class="memberId">Id: {{teamMember.Id}}</span>  
+                        <span class="memberName">Name: {{teamMember.Name}}</span> 
+                        <span class="memberTask">Task: None!</span>
+                        <span class="memberDelete"><input type="button" value="Delete" ng-click="removeTeamMember([[teamMember.Id]])" /></span>
                     </li>
                 </ul>
 
