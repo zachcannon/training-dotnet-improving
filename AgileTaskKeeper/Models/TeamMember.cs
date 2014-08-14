@@ -10,14 +10,15 @@ namespace AgileTaskKeeper.Models
     public class TeamMember
     {
         [Required, Key]
-        public int Id { get; set; }
+        public int TeamMemberId { get; set; }
         public String Name { get; set; }
 
-        public TeamMember() { }
+        public virtual ICollection<AgileTask> TaskList { get; set; }
 
+        public TeamMember() { }
         public TeamMember(int Id, String name)
         {
-            this.Id = Id;
+            this.TeamMemberId = Id;
             this.Name = name;
         }
 

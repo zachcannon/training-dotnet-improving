@@ -49,4 +49,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Name" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="bef56b83-f7bc-4db0-8cfb-43de23b61b19" ChangeDateTime="08/11/2014 00:25:15">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMemberId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b312b6d6-1f4e-4ff0-8f02-a02e030930ed" ChangeDateTime="08/11/2014 00:32:33">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[TeamMemberId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMember_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68e41aed-a21a-493a-ad07-dbd2b7ad429c" ChangeDateTime="08/11/2014 00:32:40">
+    <Property Name="ElementName" Value="[dbo].[AgileTasks].[TeamMemberId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AgileTasks]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMember_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c5b5d88b-1d94-4664-8e5e-b05c65aa55f0" ChangeDateTime="08/11/2014 00:37:34">
+    <Property Name="ElementName" Value="[dbo].[TeamMembers].[TeamMember_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMemberId" />
+  </Operation>
 </Operations>

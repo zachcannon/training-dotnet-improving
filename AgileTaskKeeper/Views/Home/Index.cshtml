@@ -33,11 +33,12 @@
 
                 <h3>All Tasks:</h3>
                 <ul>
-                    <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'" 
-                        ng-repeat="task in listOfTasks" ng-click="updateTitleBox(task)">
+                    <li class="taskListItem" ng-class-odd="'oddTaskRow'" ng-class-even="'evenTaskRow'"
+                        ng-repeat="task in listOfTasks" ng-click="updateUpdateBox(task)">
                         <span>Title: {{task.Title}}</span>
                         <span>Body: {{task.Body}}</span>
                         <span>Status: {{translateStatus([[task.MyStatus]])}}</span>
+                        <span>Owner: {{extractTeamMember([[task.TeamMember]])}}</span>
                     </li>
                 </ul>
 
@@ -49,10 +50,10 @@
                 </form>
                 <ul>
                     <li class="memberListItem" ng-repeat="teamMember in listOfTeamMembers">
-                        <span class="memberId">Id: {{teamMember.Id}}</span>  
+                        <span class="memberId">Id: {{teamMember.TeamMemberId}}</span>  
                         <span class="memberName">Name: {{teamMember.Name}}</span> 
-                        <span class="memberTask">Task: None!</span>
-                        <span class="memberDelete"><input type="button" value="Delete" ng-click="removeTeamMember([[teamMember.Id]])" /></span>
+                        <span class="memberTask">Task: {{extractTaskList([[teamMember]])}}</span>
+                        <span class="memberDelete"><input type="button" value="Delete" ng-click="removeTeamMember([[teamMember.TeamMemberId]])" /></span>
                     </li>
                 </ul>
 
@@ -109,7 +110,12 @@
                                         <label for="newTaskStatus">Status:</label>
                                         <select name="MyStatus" ng-model="updateFormStatus" ng-options="status.Text for status in possibleStatuses track by status.Value">
                                             <option style="display:none" value="">Choose a updated Status...</option>
-
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label for="newTaskOwner">Owner:</label>
+                                        <select name="TeamMemberId" ng-model="updateFormOwnerId" ng-options="teamMember.Name for teamMember in listOfTeamMembers track by teamMember.TeamMemberId">
+                                            <option style="display:none" value="">Choose a new Owner...</option>
                                         </select>
                                     </p>
                                     <input type="button" value="Update" ng-click="updateTask()" />

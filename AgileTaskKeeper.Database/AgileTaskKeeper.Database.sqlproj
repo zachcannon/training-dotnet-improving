@@ -133,4 +133,9 @@
   <ItemGroup>
     <PostDeploy Include="dbo\Script.TaskStatusPopulate.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Users\Zachary Cannon\Documents\GitHub\social-storytelling\SocialStorytelling.Business\Dependencies\Tweetinvi.0.9.2.2\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

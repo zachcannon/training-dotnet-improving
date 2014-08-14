@@ -38,7 +38,7 @@ ul {
     font-size: 120%; }
     ul .taskListItem span {
       display: inline-block;
-      width: 30%; }
+      width: 20%; }
   ul .evenTaskRow {
     background-color: white; }
   ul .oddTaskRow {

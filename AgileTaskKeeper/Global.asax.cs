@@ -1,4 +1,5 @@
 ﻿using AgileTaskKeeper.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,6 +24,8 @@ namespace AgileTaskKeeper
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer<AgileTaskKeeperContext>(null);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌ferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }
 }

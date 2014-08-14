@@ -8,14 +8,12 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             success(function (data, status, headers, config) {
                 $scope.possibleStatuses = data;
             })
-
     };
 
     $scope.getPossibleStatuses();
     //--------------------------- END STATUS SECTION ---------------------------
 
     //--------------------------- TASK SECTION ---------------------------
-
     $scope.displayAllTasks = function () {
         taskFactory.getTasks().
             success(function (data, status, headers, config) {
@@ -24,7 +22,6 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             error(function (data, status, headers, config) {
                 noty({ 'text': 'Error retrieving tasks from backend...', 'timeout': '5000' });
             });
-
     };
 
     $scope.resetAllFormFields = function () {
@@ -33,15 +30,15 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         $scope.updateFormTitle = "";
         $scope.updateFormBody = "";
         $scope.updateFormStatus = "";
+        $scope.updateFormOwnerId = "";
         $scope.deleteFormTitle = "";
-    }
+    };
 
     $scope.saveTask = function () {
         taskFactory.saveTask($('#newTaskForm').serialize()).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Task Successfully Added!', 'timeout': '5000' });
-                $scope.resetAllFormFields();
-                $scope.displayAllTasks();
+                $scope.asyncPageRefresh();
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'Error saving task...', 'timeout': '5000' });
@@ -54,8 +51,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         taskFactory.updateTask($('#updateTaskForm').serialize()).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Task Successfully Updated!', 'timeout': '5000' });
-                $scope.resetAllFormFields();
-                $scope.displayAllTasks();
+                $scope.asyncPageRefresh();
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'The task was not updated, an error occured...', 'timeout': '5000' });
@@ -70,8 +66,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         taskFactory.deleteTask($('#deleteTaskForm').serialize()).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Task Successfully Removed!', 'timeout': '5000' });
-                $scope.resetAllFormFields();
-                $scope.displayAllTasks();
+                $scope.asyncPageRefresh();
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'The task was not removed, an error occured...', 'timeout': '5000' });
@@ -80,12 +75,24 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         disabled.attr('disabled', 'disabled');
     };
 
-    $scope.updateTitleBox = function (task) {
+    $scope.updateUpdateBox = function (task) {
         $scope.updateFormTitle = task.Title;
         $scope.updateFormBody = task.Body;
         $scope.updateFormStatus = $scope.findStatusInSelect(task.MyStatus);
+        $scope.updateFormOwnerId = $scope.findOwnerInSelect(task.TeamMember.TeamMemberId);
         $scope.deleteFormTitle = task.Title;
-    }
+    };
+
+    $scope.findOwnerInSelect = function (taskOwner) {
+        var i = 0;
+        var size = $scope.listOfTeamMembers.length;
+
+        for (i = 0; i < size; i++) {
+            if ($scope.listOfTeamMembers[i].TeamMemberId == taskOwner) {
+                return $scope.listOfTeamMembers[i];
+            }
+        }
+    };
 
     $scope.findStatusInSelect = function (taskId) {
         var i = 0;
@@ -96,7 +103,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
                 return $scope.possibleStatuses[i];
             }
         }
-    }
+    };
 
     $scope.translateStatus = function (enumId) {
         var i = 0;
@@ -108,26 +115,30 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             }
         }
         return ("Could not translate this enum!!");
-    }
+    };
 
-
-    $scope.displayAllTasks();
+    $scope.extractTeamMember = function (teamMember) {
+        var member = teamMember[0];
+        if (member[0] == null) {
+            return ("<No One>")
+        }
+        return (member[0].Name);
+    };
     //--------------------------- END TASK SECTION ---------------------------
 
-    //--------------------------- TEAM MEMBER SECTION ---------------------------    
+    //--------------------------- TEAM MEMBER SECTION ---------------------------   
     $scope.getListOfTeamMembers = function () {
-
         teamMemberFactory.getTeamMembers().
             success(function (data) {
                 $scope.listOfTeamMembers = data;
             })
-    }
+    };
 
     $scope.addTeamMember = function () {
         teamMemberFactory.addTeamMember($('#newTeamMemberForm').serialize()).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Team Member Successfully Added!', 'timeout': '5000' });
-                $scope.getListOfTeamMembers();
+                $scope.asyncPageRefresh();
                 $scope.newMemberName = "";
             }).
             error(function (data, status, headers, config) {
@@ -139,13 +150,34 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         teamMemberFactory.removeTeamMember(teamMemberToRemove).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Team Member Successfully Removed!', 'timeout': '5000' });
-                $scope.getListOfTeamMembers();
+                $scope.asyncPageRefresh();
             }).
             error(function (data, status, headers, config) {
                 noty({ 'text': 'Error removing team member...', 'timeout': '5000' });
             });
     };
 
-    $scope.getListOfTeamMembers();
+    $scope.extractTaskList = function (teamMemberToExtract) {
+        var teamMember = teamMemberToExtract[0][0];
+        var taskList = teamMember.TaskList;
+        var returnList = "";
+        
+        var i;
+        for (i = 0; i < taskList.length; i++) {
+            if (i > 0)
+                returnList += ", ";
+            returnList += taskList[i].Title;
+        }
+
+        return returnList;
+    };
+
+    $scope.asyncPageRefresh = function () {
+        $scope.getListOfTeamMembers();
+        $scope.displayAllTasks();
+        $scope.resetAllFormFields();
+    };
+
+    $scope.asyncPageRefresh();
     //--------------------------- END TEAM MEMBER SECTION ---------------------------   
 });
