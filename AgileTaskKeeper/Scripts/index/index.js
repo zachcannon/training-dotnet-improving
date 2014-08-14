@@ -24,16 +24,6 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
             });
     };
 
-    $scope.resetAllFormFields = function () {
-        $scope.newFormTitle = "";
-        $scope.newFormBody = "";
-        $scope.updateFormTitle = "";
-        $scope.updateFormBody = "";
-        $scope.updateFormStatus = "";
-        $scope.updateFormOwnerId = "";
-        $scope.deleteFormTitle = "";
-    };
-
     $scope.saveTask = function () {
         taskFactory.saveTask($('#newTaskForm').serialize()).
             success(function (data, status, headers, config) {
@@ -79,16 +69,20 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         $scope.updateFormTitle = task.Title;
         $scope.updateFormBody = task.Body;
         $scope.updateFormStatus = $scope.findStatusInSelect(task.MyStatus);
-        $scope.updateFormOwnerId = $scope.findOwnerInSelect(task.TeamMember.TeamMemberId);
+        $scope.updateFormOwnerId = $scope.findOwnerInSelect(task.TeamMember);
         $scope.deleteFormTitle = task.Title;
     };
 
     $scope.findOwnerInSelect = function (taskOwner) {
+        if (taskOwner == null) {
+            return "";
+        }
+
         var i = 0;
         var size = $scope.listOfTeamMembers.length;
 
         for (i = 0; i < size; i++) {
-            if ($scope.listOfTeamMembers[i].TeamMemberId == taskOwner) {
+            if ($scope.listOfTeamMembers[i].TeamMemberId == taskOwner.TeamMemberId) {
                 return $scope.listOfTeamMembers[i];
             }
         }
@@ -171,6 +165,18 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
 
         return returnList;
     };
+    //--------------------------- END TEAM MEMBER SECTION ---------------------------   
+
+    //--------------------------- GENERAL FUNCTIONALITY SECTION ---------------------------
+    $scope.resetAllFormFields = function () {
+        $scope.newFormTitle = "";
+        $scope.newFormBody = "";
+        $scope.updateFormTitle = "";
+        $scope.updateFormBody = "";
+        $scope.updateFormStatus = "";
+        $scope.updateFormOwnerId = "";
+        $scope.deleteFormTitle = "";
+    };
 
     $scope.asyncPageRefresh = function () {
         $scope.getListOfTeamMembers();
@@ -179,5 +185,4 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
     };
 
     $scope.asyncPageRefresh();
-    //--------------------------- END TEAM MEMBER SECTION ---------------------------   
 });

@@ -115,7 +115,7 @@
                                     <p>
                                         <label for="newTaskOwner">Owner:</label>
                                         <select name="TeamMemberId" ng-model="updateFormOwnerId" ng-options="teamMember.Name for teamMember in listOfTeamMembers track by teamMember.TeamMemberId">
-                                            <option style="display:none" value="">Choose a new Owner...</option>
+                                            <option value="">No Owner!</option>
                                         </select>
                                     </p>
                                     <input type="button" value="Update" ng-click="updateTask()" />
