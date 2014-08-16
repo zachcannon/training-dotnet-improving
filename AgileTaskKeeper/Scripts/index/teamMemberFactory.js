@@ -20,7 +20,7 @@
             removeTeamMember: function (input) {
                 return $http({
                     method: 'POST',
-                    url: 'api/TeamMember/Delete?idToRemove=' + input
+                    url: 'api/TeamMember/Delete?id=' + input
                 });
             }
         };

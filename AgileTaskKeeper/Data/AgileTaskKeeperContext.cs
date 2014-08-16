@@ -25,7 +25,7 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                return db.AgileTasks.Include(tm => tm.TeamMember).Include(tl => tl.TeamMember.TaskList).ToList();
+                return db.AgileTasks.Include(tl => tl.TeamMember.TaskList).ToList();
             }
         }
 

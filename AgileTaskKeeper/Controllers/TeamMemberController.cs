@@ -31,9 +31,9 @@ namespace AgileTaskKeeper.Controllers
 
         [Route("api/TeamMember/Delete")]
         [HttpPost]
-        public void Delete(int idToRemove)
+        public void RemoveATeamMember(int id)
         {
-            _repository.RemoveTeamMember(idToRemove);
+            _repository.RemoveTeamMember(id);
         }
     }
 }
