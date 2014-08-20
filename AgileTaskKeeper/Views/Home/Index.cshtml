@@ -98,23 +98,24 @@
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <form id="updateTaskForm">
+                                    <input type="hidden" name="AgileTaskId" ng-value="taskFormId" />
                                     <p>
                                         <label for="taskTitle">Title:</label>
-                                        <input type="text" name="Title" ng-model="updateFormTitle" placeholder="Click on task to pop" disabled />
+                                        <input type="text" name="Title" ng-model="taskFormTitle" placeholder="Click on task to pop" disabled />
                                     </p>
                                     <p>
                                         <label for="newTaskBody">New Body:</label>
-                                        <input type="text" name="Body" ng-model="updateFormBody" placeholder="New body here..." />
+                                        <input type="text" name="Body" ng-model="taskFormBody" placeholder="New body here..." />
                                     </p>
                                     <p>
                                         <label for="newTaskStatus">Status:</label>
-                                        <select name="MyStatus" ng-model="updateFormStatus" ng-options="status.Text for status in possibleStatuses track by status.Value">
+                                        <select name="MyStatus" ng-model="taskFormStatus" ng-options="status.Text for status in possibleStatuses track by status.Value">
                                             <option style="display:none" value="">Choose a updated Status...</option>
                                         </select>
                                     </p>
                                     <p>
                                         <label for="newTaskOwner">Owner:</label>
-                                        <select name="TeamMemberId" ng-model="updateFormOwnerId" ng-options="teamMember.Name for teamMember in listOfTeamMembers track by teamMember.TeamMemberId">
+                                        <select name="TeamMemberId" ng-model="taskFormOwnerId" ng-options="teamMember.Name for teamMember in listOfTeamMembers track by teamMember.TeamMemberId">
                                             <option value="">No Owner!</option>
                                         </select>
                                     </p>
@@ -134,9 +135,10 @@
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <form id="deleteTaskForm">
+                                    <input type="hidden" name="AgileTaskId" ng-value="taskFormId" />
                                     <p>
                                         <label for="taskTitle">Title:</label>
-                                        <input type="text" name="Title" ng-model="deleteFormTitle" placeholder="Click on task to pop" disabled />
+                                        <input type="text" name="Title" ng-model="taskFormTitle" placeholder="Click on task to pop" disabled />
                                     </p>
                                     <input type="button" value="Delete" ng-click="deleteTask()" />
                                 </form>                            

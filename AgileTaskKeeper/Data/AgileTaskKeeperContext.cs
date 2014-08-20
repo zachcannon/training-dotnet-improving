@@ -13,13 +13,6 @@ namespace AgileTaskKeeper.Data
         public DbSet<AgileTask> AgileTasks { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<TeamMember>().Property(r => r.TeamMemberId)
-                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-        }
-
         //Agile Task Functions
         public IEnumerable<AgileTask> GetAllTasks()
         {
@@ -56,7 +49,7 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var taskToUpdate = db.AgileTasks.Find(updateTask.Title);
+                var taskToUpdate = db.AgileTasks.Find(updateTask.AgileTaskId);
                 if (taskToUpdate != null)
                 {
                     taskToUpdate.Body = updateTask.Body;
@@ -73,7 +66,7 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var taskToDelete = db.AgileTasks.Find(deletedTask.Title);
+                var taskToDelete = db.AgileTasks.Find(deletedTask.AgileTaskId);
 
                 if (taskToDelete != null)
                 {

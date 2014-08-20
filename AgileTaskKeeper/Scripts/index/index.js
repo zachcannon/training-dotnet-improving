@@ -66,11 +66,11 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
     };
 
     $scope.updateUpdateBox = function (task) {
-        $scope.updateFormTitle = task.Title;
-        $scope.updateFormBody = task.Body;
-        $scope.updateFormStatus = $scope.findStatusInSelect(task.MyStatus);
-        $scope.updateFormOwnerId = $scope.findOwnerInSelect(task.TeamMember);
-        $scope.deleteFormTitle = task.Title;
+        $scope.taskFormId = task.AgileTaskId;
+        $scope.taskFormTitle = task.Title;
+        $scope.taskFormBody = task.Body;
+        $scope.taskFormStatus = $scope.findStatusInSelect(task.MyStatus);
+        $scope.taskFormOwnerId = $scope.findOwnerInSelect(task.TeamMember);
     };
 
     $scope.findOwnerInSelect = function (taskOwner) {
@@ -171,11 +171,11 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
     $scope.resetAllFormFields = function () {
         $scope.newFormTitle = "";
         $scope.newFormBody = "";
-        $scope.updateFormTitle = "";
-        $scope.updateFormBody = "";
-        $scope.updateFormStatus = "";
-        $scope.updateFormOwnerId = "";
-        $scope.deleteFormTitle = "";
+        $scope.taskFormTitle = "";
+        $scope.taskFormBody = "";
+        $scope.taskFormStatus = "";
+        $scope.taskFormOwnerId = "";
+        $scope.taskFormId = "";
     };
 
     $scope.asyncPageRefresh = function () {

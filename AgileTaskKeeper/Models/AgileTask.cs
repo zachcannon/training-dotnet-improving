@@ -10,6 +10,7 @@ namespace AgileTaskKeeper.Models
     public class AgileTask
     {
         [Key]
+        public int AgileTaskId { get; set; }
         public String Title { get; set; }
         public String Body { get; set; }
 
@@ -22,6 +23,7 @@ namespace AgileTaskKeeper.Models
         public AgileTask() { }
         public AgileTask(String title, String body)
         {
+            this.AgileTaskId = 0;
             this.Title = title;
             this.Body = body;
         }
