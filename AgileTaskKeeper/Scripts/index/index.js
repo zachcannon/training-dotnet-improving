@@ -111,12 +111,19 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         return ("Could not translate this enum!!");
     };
 
-    $scope.extractTeamMember = function (teamMember) {
-        var member = teamMember[0];
-        if (member[0] == null) {
-            return ("<No One>")
+    $scope.extractTeamMembers = function (teamMember) {
+        var memberList = teamMember[0][0];
+
+        var returnList = "";
+
+        var i;
+        for (i = 0; i < memberList.length; i++) {
+            if (i > 0)
+                returnList += ", ";
+            returnList += memberList[i].Name;
         }
-        return (member[0].Name);
+
+        return returnList;
     };
     //--------------------------- END TASK SECTION ---------------------------
 
@@ -153,7 +160,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
 
     $scope.extractTaskList = function (teamMemberToExtract) {
         var teamMember = teamMemberToExtract[0][0];
-        var taskList = teamMember.TaskList;
+        var taskList = teamMember.AgileTasks;
         var returnList = "";
         
         var i;

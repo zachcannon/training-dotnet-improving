@@ -55,7 +55,7 @@ namespace AgileTaskKeeper.Data
                 if (taskToUpdate != null)
                 {
                     taskToUpdate.Body = updateTask.Body;
-                    //taskToUpdate.MyStatus = updateTask.MyStatus;
+                    taskToUpdate.MyStatus = updateTask.MyStatus;
                     //taskToUpdate.TeamMemberId = updateTask.TeamMemberId;
                     db.SaveChanges();
                     return true;
