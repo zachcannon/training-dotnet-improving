@@ -77,4 +77,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="TeamMemberId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="75fb6ab5-ae10-4ca5-a7c9-9ed8934516e1" ChangeDateTime="08/30/2014 15:49:15">
+    <Property Name="ElementName" Value="[dbo].[AgileTasksTeamMembers].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AgileTasksTeamMembers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamMemberId" />
+  </Operation>
 </Operations>

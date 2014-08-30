@@ -14,12 +14,10 @@ namespace AgileTaskKeeper.Models
         public String Title { get; set; }
         public String Body { get; set; }
 
-        [Column("TaskStatusId")]
-        public virtual TaskStatus MyStatus { get; set; }
+        //[Column("TaskStatusId")]
+        //public virtual TaskStatus MyStatus { get; set; }
 
-        // Many team members?
-        public int? TeamMemberId { get; set; }
-        public virtual TeamMember TeamMember { get; set; }
+        public virtual ICollection<TeamMember> TeamMembers { get; set; }
 
         public AgileTask() { }
         public AgileTask(String title, String body)

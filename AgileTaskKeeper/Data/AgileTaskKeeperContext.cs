@@ -18,7 +18,9 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                return db.AgileTasks.Include(tl => tl.TeamMember.TaskList).ToList();
+                db.Configuration.ProxyCreationEnabled = false;
+                //var foo = db.AgileTasks.Include(at => at.TeamMembers).ToList();
+                return db.AgileTasks.Include(at => at.TeamMembers).ToList();
             }
         }
 
@@ -53,8 +55,8 @@ namespace AgileTaskKeeper.Data
                 if (taskToUpdate != null)
                 {
                     taskToUpdate.Body = updateTask.Body;
-                    taskToUpdate.MyStatus = updateTask.MyStatus;
-                    taskToUpdate.TeamMemberId = updateTask.TeamMemberId;
+                    //taskToUpdate.MyStatus = updateTask.MyStatus;
+                    //taskToUpdate.TeamMemberId = updateTask.TeamMemberId;
                     db.SaveChanges();
                     return true;
                 }
@@ -83,7 +85,9 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                return db.TeamMembers.Include(tl => tl.TaskList).ToList();
+                db.Configuration.ProxyCreationEnabled = false;
+                //var foo = db.TeamMembers.Include(tl => tl.AgileTasks).ToList();
+                return db.TeamMembers.Include(tm => tm.AgileTasks).ToList();
             }
         }
 
@@ -104,13 +108,13 @@ namespace AgileTaskKeeper.Data
                 var teamMemberToRemove = db.TeamMembers.Find(teamMemberIdToRemove);
                 
                 //Look through all tasks, where you find the team members idToRemove, clear that line
-                foreach (AgileTask task in db.AgileTasks.ToList())
-                {
-                    if (task.TeamMemberId == teamMemberIdToRemove)
-                    {
-                        task.TeamMemberId = null;
-                    }
-                }
+                //foreach (AgileTask task in db.AgileTasks.ToList())
+                //{
+                //    if (task.TeamMemberId == teamMemberIdToRemove)
+                //    {
+                //        task.TeamMemberId = null;
+                //    }
+                //}
 
                 db.TeamMembers.Remove(teamMemberToRemove);
                 db.SaveChanges();
