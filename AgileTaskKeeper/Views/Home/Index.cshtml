@@ -38,7 +38,7 @@
                         <span>Title: {{task.Title}}</span>
                         <span>Body: {{task.Body}}</span>
                         <span>Status: {{translateStatus([[task.MyStatus]])}}</span>
-                        <span>Owners: {{extractTeamMembers([[task.TeamMembers]])}}</span>
+                        <span>Owners: {{extractTeamMembers([[task.AssignedTeamMembers]])}}</span>
                     </li>
                 </ul>
 
@@ -114,11 +114,12 @@
                                         </select>
                                     </p>
                                     <p>
-                                        <label for="newTaskOwner">Owner:</label>
-                                        <select name="TeamMemberId" ng-model="taskFormOwnerId" ng-options="teamMember.Name for teamMember in listOfTeamMembers track by teamMember.TeamMemberId">
+                                        <label for="newTaskOwner">Owners:</label>
+                                        <select multiple ng-multiple="true" id="assignedTeamMemberSelector" name="AssignedTeamMembers" ng-model="assignedTeamMembersList" ng-options="teamMember.Name for teamMember in listOfTeamMembers">
                                             <option value="">No Owner!</option>
                                         </select>
                                     </p>
+                            
                                     <input type="button" value="Update" ng-click="updateTask()" />
                                 </form>                          
                             </div>

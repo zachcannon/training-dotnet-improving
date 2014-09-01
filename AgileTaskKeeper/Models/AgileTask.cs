@@ -17,7 +17,7 @@ namespace AgileTaskKeeper.Models
         [Column("TaskStatusId")]
         public virtual TaskStatus MyStatus { get; set; }
 
-        public virtual ICollection<TeamMember> TeamMembers { get; set; }
+        public virtual ICollection<TeamMember> AssignedTeamMembers { get; set; }
 
         public AgileTask() { }
         public AgileTask(String title, String body)

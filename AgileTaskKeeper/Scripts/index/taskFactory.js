@@ -1,7 +1,6 @@
 ﻿window.app.factory('taskFactory',
     function ($http) {
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-        $http.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded";
 
         return {
             getTasks: function () {
@@ -22,7 +21,9 @@
                 return $http({
                     method: 'PUT',
                     url: '/api/AgileTask',
-                    data: input
+                    contentType: 'application/json; charset=utf-8',
+                    data: input,
+                    dataType: 'json'
                 });
             },
             deleteTask: function (input) {

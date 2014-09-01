@@ -38,7 +38,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
     $scope.updateTask = function () {
         var disabled = $('#updateTaskForm').find(':input:disabled').removeAttr('disabled');
 
-        taskFactory.updateTask($('#updateTaskForm').serialize()).
+        taskFactory.updateTask($scope.seralizedUpdateBox()).
             success(function (data, status, headers, config) {
                 noty({ 'text': 'Task Successfully Updated!', 'timeout': '5000' });
                 $scope.asyncPageRefresh();
@@ -70,23 +70,39 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         $scope.taskFormTitle = task.Title;
         $scope.taskFormBody = task.Body;
         $scope.taskFormStatus = $scope.findStatusInSelect(task.MyStatus);
-        $scope.taskFormOwnerId = $scope.findOwnerInSelect(task.TeamMember);
     };
 
-    $scope.findOwnerInSelect = function (taskOwner) {
-        if (taskOwner == null) {
-            return "";
+    $scope.seralizedUpdateBox = function () {
+        var agileTask = {
+            AgileTaskId:$scope.taskFormId,
+            Title:$scope.taskFormTitle,
+            Body:$scope.taskFormBody,
+            MyStatus: $scope.taskFormStatus.Text,
+            AssignedTeamMembers: $scope.extractTeamMemberAssignedToTask()
         }
 
-        var i = 0;
-        var size = $scope.listOfTeamMembers.length;
+        var json = JSON.stringify(agileTask);
 
-        for (i = 0; i < size; i++) {
-            if ($scope.listOfTeamMembers[i].TeamMemberId == taskOwner.TeamMemberId) {
-                return $scope.listOfTeamMembers[i];
-            }
+        return json;
+    }
+
+    $scope.extractTeamMemberAssignedToTask = function () {
+        var foo = $scope.assignedTeamMembersList;
+        if (foo == null)
+            return;
+
+        var listOfMembers = [];
+
+        var i;
+        for (i = 0; i < foo.length; i++) {
+            var member = new Object();
+            member.TeamMemberId = foo[i].TeamMemberId;
+            member.Name = foo[i].Name;
+            listOfMembers.push(member);
         }
-    };
+
+        return listOfMembers;
+    }
 
     $scope.findStatusInSelect = function (taskId) {
         var i = 0;
@@ -181,7 +197,7 @@ window.app.controller("agileIndexController", function ($scope, taskFactory, sta
         $scope.taskFormTitle = "";
         $scope.taskFormBody = "";
         $scope.taskFormStatus = "";
-        $scope.taskFormOwnerId = "";
+        $scope.assignedTeamMembersList = "";
         $scope.taskFormId = "";
     };
 

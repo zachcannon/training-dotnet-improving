@@ -19,8 +19,7 @@ namespace AgileTaskKeeper.Data
             using (var db = new AgileTaskKeeperContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                //var foo = db.AgileTasks.Include(at => at.TeamMembers).ToList();
-                return db.AgileTasks.Include(at => at.TeamMembers).ToList();
+                return db.AgileTasks.Include(at => at.AssignedTeamMembers).ToList();
             }
         }
 
@@ -47,17 +46,39 @@ namespace AgileTaskKeeper.Data
             }
         }
 
-        public bool UpdateTask(AgileTask updateTask)
+        public bool UpdateTask(AgileTask newVersionOfTask)
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var taskToUpdate = db.AgileTasks.Find(updateTask.AgileTaskId);
+                var taskToUpdate = db.AgileTasks.Include(tm => tm.AssignedTeamMembers)
+                    .SingleOrDefault(id => id.AgileTaskId == newVersionOfTask.AgileTaskId);
+
                 if (taskToUpdate != null)
                 {
-                    taskToUpdate.Body = updateTask.Body;
-                    taskToUpdate.MyStatus = updateTask.MyStatus;
-                    //taskToUpdate.TeamMemberId = updateTask.TeamMemberId;
+                    //taskToUpdate.Body = newVersionOfTask.Body;
+                    //taskToUpdate.MyStatus = newVersionOfTask.MyStatus;
+
+                    db.Entry(taskToUpdate).CurrentValues.SetValues(newVersionOfTask);
+                     
+                    // Remove categories that are not in the id list anymore
+                    foreach (var removeCheck in taskToUpdate.AssignedTeamMembers.ToList())
+                    {
+                        if ((newVersionOfTask.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == removeCheck.TeamMemberId) == null))
+                            taskToUpdate.AssignedTeamMembers.Remove(removeCheck);
+                    }
+
+                    // Add categories that are not in the DB list but in id list
+                    foreach (var member in newVersionOfTask.AssignedTeamMembers)
+                    {
+                        if (taskToUpdate.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == member.TeamMemberId) == null)
+                        {
+                            db.TeamMembers.Attach(member);
+                            taskToUpdate.AssignedTeamMembers.Add(member);
+                        }
+                    }
+
                     db.SaveChanges();
+
                     return true;
                 }
                 return false;
@@ -86,7 +107,6 @@ namespace AgileTaskKeeper.Data
             using (var db = new AgileTaskKeeperContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                //var foo = db.TeamMembers.Include(tl => tl.AgileTasks).ToList();
                 return db.TeamMembers.Include(tm => tm.AgileTasks).ToList();
             }
         }
