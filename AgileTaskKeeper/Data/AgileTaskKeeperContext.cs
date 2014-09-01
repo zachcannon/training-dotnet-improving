@@ -55,9 +55,7 @@ namespace AgileTaskKeeper.Data
 
                 if (taskToUpdate != null)
                 {
-                    //taskToUpdate.Body = newVersionOfTask.Body;
-                    //taskToUpdate.MyStatus = newVersionOfTask.MyStatus;
-
+                    // Set the static values for the AgileTaskClass
                     db.Entry(taskToUpdate).CurrentValues.SetValues(newVersionOfTask);
                      
                     // Remove categories that are not in the id list anymore
