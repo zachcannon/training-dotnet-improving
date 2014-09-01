@@ -83,11 +83,11 @@ namespace AgileTaskKeeper.Data
             }
         }
 
-        public bool DeleteTask(AgileTask deletedTask)
+        public bool DeleteTask(AgileTask task)
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var taskToDelete = db.AgileTasks.Find(deletedTask.AgileTaskId);
+                var taskToDelete = db.AgileTasks.Find(task.AgileTaskId);
 
                 if (taskToDelete != null)
                 {
@@ -119,21 +119,12 @@ namespace AgileTaskKeeper.Data
             }
         }
 
-        public void RemoveTeamMember(int teamMemberIdToRemove)
+        public void RemoveTeamMember(int id)
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var teamMemberToRemove = db.TeamMembers.Find(teamMemberIdToRemove);
+                var teamMemberToRemove = db.TeamMembers.Find(id);
                 
-                //Look through all tasks, where you find the team members idToRemove, clear that line
-                //foreach (AgileTask task in db.AgileTasks.ToList())
-                //{
-                //    if (task.TeamMemberId == teamMemberIdToRemove)
-                //    {
-                //        task.TeamMemberId = null;
-                //    }
-                //}
-
                 db.TeamMembers.Remove(teamMemberToRemove);
                 db.SaveChanges();
             }
