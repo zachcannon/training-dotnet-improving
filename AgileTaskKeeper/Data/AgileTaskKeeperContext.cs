@@ -1,4 +1,5 @@
-﻿using AgileTaskKeeper.Models;
+﻿using AgileTaskKeeper.Mapping;
+using AgileTaskKeeper.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,23 +17,8 @@ namespace AgileTaskKeeper.Data
         // Map the Many to Many here!!!
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TeamMember>()
-                .HasMany(tm => tm.AgileTasks)
-                .WithMany(at => at.AssignedTeamMembers)
-                .Map(m => {
-                    m.ToTable("TeamMemberAgileTasks");
-                    m.MapLeftKey("AgileTaskId");
-                    m.MapRightKey("TeamMemberId");
-                });
-
-            modelBuilder.Entity<AgileTask>()
-                .HasMany(at => at.AssignedTeamMembers)
-                .WithMany(tm => tm.AgileTasks)
-                .Map(m => {
-                    m.ToTable("TeamMemberAgileTasks");
-                    m.MapLeftKey("TeamMemberId");
-                    m.MapRightKey("AgileTaskId");
-                });
+            modelBuilder.Configurations.Add(new AgileTaskMap());
+            modelBuilder.Configurations.Add(new TeamMemberMap());
 
             base.OnModelCreating(modelBuilder);
         }

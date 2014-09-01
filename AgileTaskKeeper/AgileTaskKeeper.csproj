@@ -205,6 +205,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\AgileTaskMap.cs" />
+    <Compile Include="Mapping\TeamMemberMap.cs" />
     <Compile Include="Models\AgileTask.cs" />
     <Compile Include="Data\AgileTaskRepository.cs" />
     <Compile Include="Data\IAgileTaskRepository.cs" />
