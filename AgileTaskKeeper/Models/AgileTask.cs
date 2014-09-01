@@ -22,7 +22,6 @@ namespace AgileTaskKeeper.Models
         public AgileTask() { }
         public AgileTask(String title, String body)
         {
-            this.AgileTaskId = 0;
             this.Title = title;
             this.Body = body;
         }
