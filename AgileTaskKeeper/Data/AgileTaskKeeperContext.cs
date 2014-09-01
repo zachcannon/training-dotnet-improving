@@ -13,6 +13,8 @@ namespace AgileTaskKeeper.Data
         public DbSet<AgileTask> AgileTasks { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
 
+        // map the Many to Many here!!!
+
         //Agile Task Functions
         public IEnumerable<AgileTask> GetAllTasks()
         {
@@ -59,19 +61,19 @@ namespace AgileTaskKeeper.Data
                     db.Entry(taskToUpdate).CurrentValues.SetValues(newVersionOfTask);
                      
                     // Remove categories that are not in the id list anymore
-                    foreach (var removeCheck in taskToUpdate.AssignedTeamMembers.ToList())
+                    foreach (var memberToCheck in taskToUpdate.AssignedTeamMembers.ToList())
                     {
-                        if ((newVersionOfTask.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == removeCheck.TeamMemberId) == null))
-                            taskToUpdate.AssignedTeamMembers.Remove(removeCheck);
+                        if ((newVersionOfTask.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == memberToCheck.TeamMemberId) == null))
+                            taskToUpdate.AssignedTeamMembers.Remove(memberToCheck);
                     }
 
                     // Add categories that are not in the DB list but in id list
-                    foreach (var member in newVersionOfTask.AssignedTeamMembers)
+                    foreach (var memberToAdd in newVersionOfTask.AssignedTeamMembers)
                     {
-                        if (taskToUpdate.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == member.TeamMemberId) == null)
+                        if (taskToUpdate.AssignedTeamMembers.SingleOrDefault(id => id.TeamMemberId == memberToAdd.TeamMemberId) == null)
                         {
-                            db.TeamMembers.Attach(member);
-                            taskToUpdate.AssignedTeamMembers.Add(member);
+                            db.TeamMembers.Attach(memberToAdd);
+                            taskToUpdate.AssignedTeamMembers.Add(memberToAdd);
                         }
                     }
 
@@ -87,7 +89,8 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var taskToDelete = db.AgileTasks.Find(task.AgileTaskId);
+                var taskToDelete = db.AgileTasks.Include(tm => tm.AssignedTeamMembers)
+                    .SingleOrDefault(id => id.AgileTaskId == task.AgileTaskId);
 
                 if (taskToDelete != null)
                 {
@@ -123,7 +126,8 @@ namespace AgileTaskKeeper.Data
         {
             using (var db = new AgileTaskKeeperContext())
             {
-                var teamMemberToRemove = db.TeamMembers.Find(id);
+                var teamMemberToRemove = db.TeamMembers.Include(at => at.AgileTasks)
+                    .SingleOrDefault(ti => ti.TeamMemberId == id);
                 
                 db.TeamMembers.Remove(teamMemberToRemove);
                 db.SaveChanges();

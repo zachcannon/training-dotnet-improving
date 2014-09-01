@@ -23,7 +23,7 @@ namespace AgileTaskKeeper
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Database.SetInitializer<AgileTaskKeeperContext>(null);
+            Database.SetInitializer<AgileTaskKeeperContext>(null);
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌ferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }

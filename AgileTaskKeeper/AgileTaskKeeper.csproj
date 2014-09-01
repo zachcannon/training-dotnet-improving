@@ -205,15 +205,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201408301748066_InitialCreate.cs" />
-    <Compile Include="Migrations\201408301748066_InitialCreate.Designer.cs">
-      <DependentUpon>201408301748066_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408301816188_ManyToMany add in status.cs" />
-    <Compile Include="Migrations\201408301816188_ManyToMany add in status.Designer.cs">
-      <DependentUpon>201408301816188_ManyToMany add in status.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AgileTask.cs" />
     <Compile Include="Data\AgileTaskRepository.cs" />
     <Compile Include="Data\IAgileTaskRepository.cs" />
@@ -604,14 +595,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408301748066_InitialCreate.resx">
-      <DependentUpon>201408301748066_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408301816188_ManyToMany add in status.resx">
-      <DependentUpon>201408301816188_ManyToMany add in status.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

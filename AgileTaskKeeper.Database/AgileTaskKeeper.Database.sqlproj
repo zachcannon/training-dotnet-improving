@@ -126,7 +126,7 @@
     <Build Include="Security\Permissions.sql" />
     <Build Include="dbo\Tables\TaskStatus.sql" />
     <Build Include="dbo\Tables\TeamMembers.sql" />
-    <Build Include="dbo\Tables\TeamMembersAgileTasks.sql" />
+    <Build Include="dbo\Tables\TeamMemberAgileTasks.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AgileTaskKeeper.Database.refactorlog" />
