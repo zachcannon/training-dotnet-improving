@@ -13,7 +13,29 @@ namespace AgileTaskKeeper.Data
         public DbSet<AgileTask> AgileTasks { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
 
-        // map the Many to Many here!!!
+        // Map the Many to Many here!!!
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TeamMember>()
+                .HasMany(tm => tm.AgileTasks)
+                .WithMany(at => at.AssignedTeamMembers)
+                .Map(m => {
+                    m.ToTable("TeamMemberAgileTasks");
+                    m.MapLeftKey("AgileTaskId");
+                    m.MapRightKey("TeamMemberId");
+                });
+
+            modelBuilder.Entity<AgileTask>()
+                .HasMany(at => at.AssignedTeamMembers)
+                .WithMany(tm => tm.AgileTasks)
+                .Map(m => {
+                    m.ToTable("TeamMemberAgileTasks");
+                    m.MapLeftKey("TeamMemberId");
+                    m.MapRightKey("AgileTaskId");
+                });
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         //Agile Task Functions
         public IEnumerable<AgileTask> GetAllTasks()
