@@ -20,6 +20,8 @@ namespace AgileTaskKeeper.Mapping
                 m.MapLeftKey("AgileTaskId");
                 m.MapRightKey("TeamMemberId");
             });
+
+            HasKey(tm => tm.TeamMemberId);
         }
     }
 }

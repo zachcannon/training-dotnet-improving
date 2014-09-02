@@ -9,7 +9,6 @@ namespace AgileTaskKeeper.Models
 {
     public class TeamMember
     {
-        [Required, Key]
         public int TeamMemberId { get; set; }
         public String Name { get; set; }
 

@@ -37,9 +37,9 @@ namespace AgileTaskKeeper.Controllers
         // I made this a POST request with a custom route to get around DELETE block
         [Route("api/AgileTask/Delete")]
         [HttpPost]
-        public HttpResponseMessage DeleteAStory([FromBody] AgileTask storyToDelete)
+        public HttpResponseMessage Delete([FromBody] AgileTask task)
         {
-            bool result = _repository.DeleteTask(storyToDelete);
+            bool result = _repository.DeleteTask(task);
 
             if (result)
                 return Request.CreateResponse(HttpStatusCode.OK, "value");

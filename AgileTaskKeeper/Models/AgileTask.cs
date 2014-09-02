@@ -9,12 +9,10 @@ namespace AgileTaskKeeper.Models
 {
     public class AgileTask
     {
-        [Key]
         public int AgileTaskId { get; set; }
         public String Title { get; set; }
         public String Body { get; set; }
 
-        [Column("TaskStatusId")]
         public virtual TaskStatus MyStatus { get; set; }
 
         public virtual ICollection<TeamMember> AssignedTeamMembers { get; set; }

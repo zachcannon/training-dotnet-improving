@@ -24,9 +24,9 @@ namespace AgileTaskKeeper.Controllers
         }
 
         [HttpPost]
-        public void Post(TeamMember memberToAdd)
+        public void Post(TeamMember member)
         {
-            _repository.AddTeamMember(memberToAdd);
+            _repository.AddTeamMember(member);
         }
 
         [Route("api/TeamMember/Delete")]
